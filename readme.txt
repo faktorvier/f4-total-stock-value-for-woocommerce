@@ -1,0 +1,38 @@
+=== F4 WooCommerce Total Stock Value ===
+Contributors: faktorvier
+Donate link: https://www.faktorvier.ch/
+Tags: woocommerce, stock, stock value, cost of goods, report, shop, ecommerce
+Requires at least: 4.4.0
+Tested up to: 5.2
+Requires PHP: 7.0
+Stable tag: 1.0.0
+License: GPLv2
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Adds a few infos about the current stock value to the WooCommerce reports.
+
+== Description ==
+
+F4 WooCommerce Total Stock Value adds a few informations about the current stock (costs of goods in stock) to the WooCommerce reports:
+
+* Total units in stock
+* Total stock value (regular prices, without sale prices)
+* Total stock value (with current sale prices)
+
+== Usage ==
+
+This plugin works out-of-the-box.
+
+== Installation ==
+
+1. Upload the plugin files to the `/wp-content/plugins/f4-woocommerce-total-stock-value` directory, or install the plugin through the WordPress plugins screen directly
+1. Activate the plugin through the 'Plugins' screen in WordPress
+
+== Screenshots ==
+
+1. Total stock value infos in WooCommerce reports
+
+== Changelog ==
+
+= 1.0.0 =
+* Initial stable release

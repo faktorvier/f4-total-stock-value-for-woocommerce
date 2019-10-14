@@ -1,0 +1,40 @@
+.total-sale-value {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding-top: 10px;
+}
+
+.total-sale-value__item {
+	width: 100%;
+	padding: 1em;
+	margin-bottom: 10px;
+	border: 1px solid #B1D4EA;
+	border-right: 5px solid #AAAAAA;
+	background-color: #FFFFFF;
+}
+
+.total-sale-value__item--value {
+	border-right-color: #3498DB;
+}
+
+.total-sale-value__item--value-sale {
+	border-right-color: #F1C40F;
+}
+
+.total-sale-value__value {
+	font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', sans-serif;
+	font-size: 1.618em;
+	line-height: 1.2em;
+	color: #464646;
+}
+
+.total-sale-value__label {
+	color: #AAAAAA;
+}
+
+@media screen and (min-width: 768px) {
+	.total-sale-value__item {
+		width: calc(33.33333% - 40px);
+	}
+}

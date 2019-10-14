@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: F4 WooCommerce Total Stock Value\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-11 13:04+0000\n"
+"PO-Revision-Date: 2019-10-11 13:08+0000\n"
+"Last-Translator: Stephan Langenegger <dev@faktorvier.ch>\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.0; wp-5.2.3"
+
+#: modules/Core/Hooks.php:76
+msgid "Total stock value"
+msgstr "Total Warenwert"
+
+#: modules/Core/partials/report.php:15
+msgid "Units in stock"
+msgstr "Einheiten an Lager"
+
+#: modules/Core/partials/report.php:24
+msgid "Total stock value (without sales)"
+msgstr "Total Warenwert (ohne Angebote)"
+
+#: modules/Core/partials/report.php:33
+msgid "Total stock value (with sales)"
+msgstr "Total Warenwert (mit Angeboten)"
+
+#. Name of the plugin
+msgid "F4 WooCommerce Total Stock Value"
+msgstr "F4 WooCommerce Total Stock Value"
+
+#. Description of the plugin
+msgid ""
+"Adds a few infos about the current stock value to the WooCommerce reports."
+msgstr ""
+"Ergänzt die WooCommerce Berichte um Informationen über den aktuellen "
+"Warenbestand und Warenwert."
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://www.faktorvier.ch"
+msgstr "https://www.faktorvier.ch"
+
+#. Author of the plugin
+msgid "FAKTOR VIER"
+msgstr "FAKTOR VIER"
