@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: F4 WooCommerce Total Stock Value\n"
+"Project-Id-Version: F4 Total Stock Value for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-11 13:04+0000\n"
-"PO-Revision-Date: 2019-10-11 13:08+0000\n"
+"POT-Creation-Date: 2019-10-14 08:13+0000\n"
+"PO-Revision-Date: 2019-10-14 08:13+0000\n"
 "Last-Translator: Stephan Langenegger <dev@faktorvier.ch>\n"
-"Language-Team: German\n"
+"Language-Team: Deutsch\n"
 "Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.3.0; wp-5.2.3"
 
-#: modules/Core/Hooks.php:76
+#: modules/Core/Hooks.php:72
 msgid "Total stock value"
 msgstr "Total Warenwert"
 
@@ -31,8 +31,8 @@ msgid "Total stock value (with sales)"
 msgstr "Total Warenwert (mit Angeboten)"
 
 #. Name of the plugin
-msgid "F4 WooCommerce Total Stock Value"
-msgstr "F4 WooCommerce Total Stock Value"
+msgid "F4 Total Stock Value for WooCommerce"
+msgstr "F4 Total Stock Value for WooCommerce"
 
 #. Description of the plugin
 msgid ""
@@ -42,10 +42,14 @@ msgstr ""
 "Warenbestand und Warenwert."
 
 #. URI of the plugin
-#. Author URI of the plugin
-msgid "https://www.faktorvier.ch"
-msgstr "https://www.faktorvier.ch"
+msgid "https://github.com/faktorvier/f4-total-stock-value-for-woocommerce"
+msgstr "https://github.com/faktorvier/f4-total-stock-value-for-woocommerce"
 
 #. Author of the plugin
 msgid "FAKTOR VIER"
 msgstr "FAKTOR VIER"
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://www.faktorvier.ch"
+msgstr "https://www.faktorvier.ch"

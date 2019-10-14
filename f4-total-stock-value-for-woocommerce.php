@@ -1,8 +1,8 @@
 <?php
 
 /*
-Plugin Name: F4 WooCommerce Total Stock Value
-Plugin URI: https://www.faktorvier.ch
+Plugin Name: F4 Total Stock Value for WooCommerce
+Plugin URI: https://github.com/faktorvier/f4-total-stock-value-for-woocommerce
 Description: Adds a few infos about the current stock value to the WooCommerce reports.
 Version: 1.0.0
 Author: FAKTOR VIER
@@ -34,7 +34,7 @@ if(!defined('ABSPATH')) exit;
 define('F4_WCTSV_VERSION', '1.0.0');
 define('F4_WCTSV_PRO', false);
 
-define('F4_WCTSV_SLUG', 'f4-wc-total-stock-value');
+define('F4_WCTSV_SLUG', 'f4-total-stock-value-for-woocommerce');
 define('F4_WCTSV_MAIN_FILE', __FILE__);
 define('F4_WCTSV_BASENAME', plugin_basename(F4_WCTSV_MAIN_FILE));
 define('F4_WCTSV_PATH', dirname(F4_WCTSV_MAIN_FILE) . DIRECTORY_SEPARATOR);
