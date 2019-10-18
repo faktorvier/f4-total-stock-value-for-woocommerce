@@ -1,6 +1,6 @@
 === F4 Total Stock Value for WooCommerce ===
 Contributors: faktorvier
-Donate link: https://www.faktorvier.ch/
+Donate link: https://www.faktorvier.ch/donate/
 Tags: woocommerce, stock, stock value, cost of goods, report, shop, ecommerce
 Requires at least: 4.4.0
 Tested up to: 5.2
