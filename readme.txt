@@ -3,7 +3,7 @@ Contributors: faktorvier
 Donate link: https://www.faktorvier.ch/donate/
 Tags: woocommerce, stock, stock value, cost of goods, report, shop, ecommerce
 Requires at least: 4.4.0
-Tested up to: 5.2
+Tested up to: 5.3
 Requires PHP: 7.0
 Stable tag: 1.0.0
 License: GPLv2
