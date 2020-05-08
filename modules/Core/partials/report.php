@@ -12,7 +12,7 @@ $total_stock_value = Helpers::get_total_stock_value();
 			<?php echo $total_stock_value['count']; ?>
 		</div>
 		<div class="total-sale-value__label">
-			<?php _e('Units in stock', 'f4-wc-total-stock-value'); ?>
+			<?php _e('Units in stock', 'f4-total-stock-value-for-woocommerce'); ?>
 		</div>
 	</div>
 
@@ -21,7 +21,7 @@ $total_stock_value = Helpers::get_total_stock_value();
 			<?php echo wc_price($total_stock_value['regular_value']); ?>
 		</div>
 		<div class="total-sale-value__label">
-			<?php _e('Total stock value (without sales)', 'f4-wc-total-stock-value'); ?>
+			<?php _e('Total stock value (without sales)', 'f4-total-stock-value-for-woocommerce'); ?>
 		</div>
 	</div>
 
@@ -30,7 +30,7 @@ $total_stock_value = Helpers::get_total_stock_value();
 			<?php echo wc_price($total_stock_value['current_value']); ?>
 		</div>
 		<div class="total-sale-value__label">
-			<?php _e('Total stock value (with sales)', 'f4-wc-total-stock-value'); ?>
+			<?php _e('Total stock value (with sales)', 'f4-total-stock-value-for-woocommerce'); ?>
 		</div>
 	</div>
 </div>

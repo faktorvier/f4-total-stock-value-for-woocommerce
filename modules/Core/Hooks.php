@@ -57,7 +57,7 @@ class Hooks {
 	 * @static
 	 */
 	public static function load_textdomain() {
-		load_plugin_textdomain('f4-wc-total-stock-value', false, plugin_basename(F4_WCTSV_PATH . 'languages') . '/');
+		load_plugin_textdomain('f4-total-stock-value-for-woocommerce', false, plugin_basename(F4_WCTSV_PATH . 'languages') . '/');
 	}
 
 	/**
@@ -69,7 +69,7 @@ class Hooks {
 	 */
 	public static function add_report_tab($reports) {
 		$reports['stock']['reports']['value'] = [
-			'title' => __('Total stock value', 'f4-wc-total-stock-value'),
+			'title' => __('Total stock value', 'f4-total-stock-value-for-woocommerce'),
 			'description' => '',
 			'hide_title' => true,
 			'callback' => function() {

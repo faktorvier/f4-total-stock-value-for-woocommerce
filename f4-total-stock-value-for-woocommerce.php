@@ -9,7 +9,7 @@ Author: FAKTOR VIER
 Author URI: https://www.faktorvier.ch
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: f4-wc-total-stock-value
+Text Domain: f4-total-stock-value-for-woocommerce
 Domain Path: /languages/
 WC requires at least: 3.0
 WC tested up to: 4.0
