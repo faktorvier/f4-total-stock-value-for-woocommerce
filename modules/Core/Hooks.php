@@ -57,7 +57,7 @@ class Hooks {
 	 * @static
 	 */
 	public static function load_textdomain() {
-		load_plugin_textdomain('f4-wc-total-stock-value', false, plugin_basename(F4_WCTSV_PATH . 'lang') . '/');
+		load_plugin_textdomain('f4-wc-total-stock-value', false, plugin_basename(F4_WCTSV_PATH . 'languages') . '/');
 	}
 
 	/**
