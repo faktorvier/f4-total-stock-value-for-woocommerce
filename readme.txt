@@ -2,10 +2,10 @@
 Contributors: faktorvier
 Donate link: https://www.faktorvier.ch/donate/
 Tags: woocommerce, stock, stock value, cost of goods, report, shop, ecommerce
-Requires at least: 4.4.0
-Tested up to: 5.4
+Requires at least: 5.0
+Tested up to: 5.5
 Requires PHP: 7.0
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,10 @@ This plugin works out-of-the-box.
 1. Total stock value infos in WooCommerce reports
 
 == Changelog ==
+
+= 1.0.4
+* Support WooCommerce 4.4
+* Support WordPress 5.5
 
 = 1.0.3
 * Update text domains
