@@ -1,3 +1,24 @@
+.total-sale-value-filter {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.total-sale-value-filter__select {
+	min-width: 400px !important;
+	max-width: 30vw !important;
+	width: 30vw !important;
+}
+
+.total-sale-value-filter__button {
+	margin-left: 6px !important;
+	align-self: flex-start;
+	height: 39px;
+}
+
+.total-sale-value-filter .select2-container .select2-search--inline .select2-search__field {
+	margin-top: 0 !important;
+}
+
 .total-sale-value {
 	display: flex;
 	justify-content: space-between;

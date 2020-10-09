@@ -24,6 +24,8 @@ class Hooks {
 
 		add_filter('woocommerce_admin_reports', __NAMESPACE__ . '\\Hooks::add_report_tab', 10, 1);
 		add_action('admin_enqueue_scripts', __NAMESPACE__ . '\\Hooks::add_custom_admin_styles');
+
+		add_action('admin_action_total-sale-value-filter',  __NAMESPACE__ . '\\Hooks::apply_product_cat_filter');
 	}
 
 	/**
@@ -94,6 +96,30 @@ class Hooks {
 		if($is_total_value_tab && $is_report_page) {
 			wp_enqueue_style(F4_WCTSV_SLUG, F4_WCTSV_URL . 'assets/css/main.css', [], F4_WCTSV_VERSION);
 		}
+	}
+
+	/**
+	 * Apply product category filter
+	 *
+	 * @since 1.1.0
+	 * @access public
+	 * @static
+	 */
+	public static function apply_product_cat_filter() {
+		$categories = $_REQUEST['product_cat'] ?? [];
+		$redirect = wp_get_referer();
+		$user_id = get_current_user_id();
+
+		if(empty($categories)) {
+			$redirect = remove_query_arg('product_cat', $redirect);
+			delete_user_meta($user_id, 'total-sale-value-filter');
+		} else {
+			$redirect = add_query_arg('product_cat', implode(',', $categories), $redirect);
+			update_user_meta($user_id, 'total-sale-value-filter', $categories);
+		}
+
+		wp_redirect($redirect);
+		exit();
 	}
 }
 

@@ -23,13 +23,40 @@ class Helpers {
 	}
 
 	/**
+	 * Check if product is assigned to a term or its children
+	 *
+	 * @since 1.1.0
+	 * @access public
+	 * @static
+	 * @return boolean TRUE if assigned, FALSE if not
+	 */
+	public static function has_product_category_recursive($terms, $post_id = null) {
+        foreach($terms as $term_slug) {
+			$term_id = get_term_by('slug', $term_slug, 'product_cat')->term_id;
+
+            $descendants = get_term_children($term_id, 'product_cat' );
+			$descendants[] = $term_id;
+
+            if($descendants && has_term($descendants, 'product_cat', $post_id)) {
+                return true;
+			}
+        }
+
+        return false;
+    }
+
+	/**
 	 * Show total stock value page
 	 *
 	 * @since 1.0.0
 	 * @access public
 	 * @static
 	 */
-	public static function get_total_stock_value() {
+	public static function get_total_stock_value($filter = []) {
+		$filter = wp_parse_args($filter, [
+			'categories' => []
+		]);
+
 		$total_value = [
 			'count' => 0,
 			'regular_value' => 0,
@@ -64,6 +91,16 @@ class Helpers {
 			// Skip orphaned variations
 			if($product->get_type() === 'variation' && $product->get_parent_id() === 0) {
 				continue;
+			}
+
+			// Apply category filter
+			if(!empty($filter['categories'])) {
+				$product_id = $product->get_parent_id();
+				$product_id = !$product_id ? $product->get_id() : $product_id;
+
+				if(!self::has_product_category_recursive($filter['categories'], $product_id)) {
+					continue;
+				}
 			}
 
 			// Calculate count and values
