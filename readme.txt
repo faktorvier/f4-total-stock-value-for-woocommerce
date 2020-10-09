@@ -19,6 +19,8 @@ F4 Total Stock Value for WooCommerce adds a few informations about the current s
 * Total stock value (regular prices, without sale prices)
 * Total stock value (with current sale prices)
 
+The values can be filtered by one or more categories.
+
 == Usage ==
 
 This plugin works out-of-the-box.
@@ -34,14 +36,17 @@ This plugin works out-of-the-box.
 
 == Changelog ==
 
-= 1.0.4
+= 1.1.0 =
+* Filter value by one or more categories
+
+= 1.0.4 =
 * Support WooCommerce 4.4
 * Support WordPress 5.5
 
-= 1.0.3
+= 1.0.3 =
 * Update text domains
 
-= 1.0.2
+= 1.0.2 =
 * Update translations
 
 = 1.0.1 =
