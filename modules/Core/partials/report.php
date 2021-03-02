@@ -18,6 +18,13 @@ $total_stock_value = Helpers::get_total_stock_value([
 	'categories' => $categories_filter
 ]);
 
+
+if(wc_prices_include_tax()) {
+	$tax_hint = WC()->countries->inc_tax_or_vat();
+} else {
+	$tax_hint = WC()->countries->ex_tax_or_vat();
+}
+
 ?>
 
 <form action="<?php echo admin_url('admin.php'); ?>" method="post" class="total-sale-value-filter">
@@ -75,7 +82,8 @@ $total_stock_value = Helpers::get_total_stock_value([
 			<?php echo wc_price($total_stock_value['regular_value']); ?>
 		</div>
 		<div class="total-sale-value__label">
-			<?php _e('Total stock value (without sales)', 'f4-total-stock-value-for-woocommerce'); ?>
+			<?php _e('Total stock value (regular prices)', 'f4-total-stock-value-for-woocommerce'); ?>
+			<?php echo $tax_hint; ?>
 		</div>
 	</div>
 
@@ -84,7 +92,8 @@ $total_stock_value = Helpers::get_total_stock_value([
 			<?php echo wc_price($total_stock_value['current_value']); ?>
 		</div>
 		<div class="total-sale-value__label">
-			<?php _e('Total stock value (with sales)', 'f4-total-stock-value-for-woocommerce'); ?>
+			<?php _e('Total stock value (with sale prices)', 'f4-total-stock-value-for-woocommerce'); ?>
+			<?php echo $tax_hint; ?>
 		</div>
 	</div>
 </div>

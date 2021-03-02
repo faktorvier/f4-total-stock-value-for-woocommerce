@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F4 Total Stock Value for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-09 10:51+0000\n"
+"POT-Creation-Date: 2021-03-02 09:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -15,35 +15,47 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.3.3; wp-5.4.1"
 
-#: modules/Core/Hooks.php:74
-msgid "Total stock value"
+#. Description of the plugin
+msgid ""
+"Adds a few infos about the current stock value to the WooCommerce reports."
 msgstr ""
 
-#: modules/Core/partials/report.php:48
-msgid "Apply filter"
-msgstr ""
-
-#: modules/Core/partials/report.php:56
+#: modules/Core/partials/report.php:63
 msgid "All products"
 msgstr ""
 
-#: modules/Core/partials/report.php:69
-msgid "Units in stock"
-msgstr ""
-
-#: modules/Core/partials/report.php:78
-msgid "Total stock value (without sales)"
-msgstr ""
-
-#: modules/Core/partials/report.php:87
-msgid "Total stock value (with sales)"
+#: modules/Core/partials/report.php:55
+msgid "Apply filter"
 msgstr ""
 
 #. Name of the plugin
 msgid "F4 Total Stock Value for WooCommerce"
 msgstr ""
 
-#. Description of the plugin
-msgid ""
-"Adds a few infos about the current stock value to the WooCommerce reports."
+#. Author of the plugin
+msgid "FAKTOR VIER"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/faktorvier/f4-total-stock-value-for-woocommerce"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.faktorvier.ch"
+msgstr ""
+
+#: modules/Core/Hooks.php:74
+msgid "Total stock value"
+msgstr ""
+
+#: modules/Core/partials/report.php:85
+msgid "Total stock value (regular prices)"
+msgstr ""
+
+#: modules/Core/partials/report.php:95
+msgid "Total stock value (with sale prices)"
+msgstr ""
+
+#: modules/Core/partials/report.php:76
+msgid "Units in stock"
 msgstr ""

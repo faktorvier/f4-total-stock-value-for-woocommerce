@@ -36,7 +36,11 @@ This plugin works out-of-the-box.
 
 == Changelog ==
 
-= 1.0.1 =
+= 1.1.2 =
+* Add hint for incl. or excl. tax
+* Support WooCommerce 5.0
+
+= 1.1.1 =
 * Support WooCommerce 4.8
 * Support WordPress 5.6
 
