@@ -35,10 +35,17 @@ if(wc_prices_include_tax()) {
 		<?php
 			ob_start();
 
-			wc_product_dropdown_categories([
+			$dropdown_args = [
 				'show_option_none' => '',
 				'show_count' => 0
-			]);
+			];
+
+			// Set default language if "all" is selected
+			if($default_lang = Helpers::get_default_lang_if_all()) {
+				$dropdown_args['lang'] = $default_lang;
+			}
+
+			wc_product_dropdown_categories($dropdown_args);
 
 			$select = ob_get_clean();
 			$select = preg_replace('/<select[^>]*>/', '', $select);

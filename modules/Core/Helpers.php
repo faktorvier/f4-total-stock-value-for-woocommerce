@@ -23,6 +23,29 @@ class Helpers {
 	}
 
 	/**
+	 * Get default language if current language is "all"
+	 *
+	 * @since 1.1.4
+	 * @access public
+	 * @static
+	 */
+	public static function get_default_lang_if_all() {
+		global $sitepress;
+
+		$lang = false;
+
+		if(defined('ICL_LANGUAGE_CODE') && ICL_LANGUAGE_CODE === 'all') {
+			if(function_exists('pll_default_language')) {
+				$lang = pll_default_language();
+			} elseif($sitepress) {
+				$lang = $sitepress->get_default_language();
+			}
+		}
+
+		return $lang;
+	}
+
+	/**
 	 * Check if product is assigned to a term or its children
 	 *
 	 * @since 1.1.0
@@ -63,7 +86,7 @@ class Helpers {
 			'current_value' => 0
 		];
 
-		$product_posts = get_posts([
+		$product_args = [
 			'post_type' => ['product', 'product_variation'],
 			'post_status' => ['publish'],
 			'nopaging' => true,
@@ -78,7 +101,14 @@ class Helpers {
 					'value' => 'yes'
 				],
 			]
-		]);
+		];
+
+		// Set default language if "all" is selected
+		if($default_lang = self::get_default_lang_if_all()) {
+			$product_args['lang'] = $default_lang;
+		}
+
+		$product_posts = get_posts($product_args);
 
 		foreach($product_posts as $product_post) {
 			$product = wc_get_product($product_post->ID);

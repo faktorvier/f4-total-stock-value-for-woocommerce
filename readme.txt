@@ -19,7 +19,7 @@ F4 Total Stock Value for WooCommerce adds a few informations about the current s
 * Total stock value (regular prices, without sale prices)
 * Total stock value (with current sale prices)
 
-The values can be filtered by one or more categories.
+The values can be filtered by one or more categories. Multilingual sites are supported for both Polylang and WPML.
 
 == Usage ==
 
@@ -35,6 +35,9 @@ This plugin works out-of-the-box.
 1. Total stock value infos in WooCommerce reports
 
 == Changelog ==
+
+= 1.1.4 =
+* Fix statistics for multilingual sites (Polylang and WPML support)
 
 = 1.1.3 =
 * Support WordPress 5.7
