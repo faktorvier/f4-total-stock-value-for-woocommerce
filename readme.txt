@@ -5,7 +5,7 @@ Tags: woocommerce, stock, stock value, cost of goods, report, shop, ecommerce
 Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 7.0
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,7 @@ This plugin works out-of-the-box.
 
 = 1.1.4 =
 * Fix statistics for multilingual sites (Polylang and WPML support)
+* Support WooCommerce 5.1
 
 = 1.1.3 =
 * Support WordPress 5.7
