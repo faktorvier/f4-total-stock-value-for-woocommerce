@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F4 Total Stock Value for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-02 09:37+0000\n"
+"POT-Creation-Date: 2022-03-16 09:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -20,12 +20,20 @@ msgid ""
 "Adds a few infos about the current stock value to the WooCommerce reports."
 msgstr ""
 
-#: modules/Core/partials/report.php:63
-msgid "All products"
+#: modules/Analytics/views/report.php:93
+msgid "All categories"
 msgstr ""
 
-#: modules/Core/partials/report.php:55
+#: modules/Analytics/views/report.php:116
+msgid "All prices %taxhint%"
+msgstr ""
+
+#: modules/Analytics/views/report.php:84
 msgid "Apply filter"
+msgstr ""
+
+#: modules/Analytics/views/report.php:52
+msgid "Category filter"
 msgstr ""
 
 #. Name of the plugin
@@ -44,18 +52,29 @@ msgstr ""
 msgid "https://www.faktorvier.ch"
 msgstr ""
 
-#: modules/Core/Hooks.php:74
+#: modules/Analytics/Hooks.php:100 modules/Analytics/Hooks.php:101
+#: modules/Analytics/views/report.php:19
+msgid "Stock value"
+msgstr ""
+
+#: modules/Analytics/Hooks.php:141
 msgid "Total stock value"
 msgstr ""
 
-#: modules/Core/partials/report.php:85
+#: modules/Analytics/Helpers.php:412
 msgid "Total stock value (regular prices)"
 msgstr ""
 
-#: modules/Core/partials/report.php:95
+#: modules/Analytics/Helpers.php:417
 msgid "Total stock value (with sale prices)"
 msgstr ""
 
-#: modules/Core/partials/report.php:76
+#: modules/Analytics/Helpers.php:407
 msgid "Units in stock"
+msgstr ""
+
+#: modules/Analytics/Hooks.php:146
+msgid ""
+"We've moved the total stock value reports to the new <a href=\"%url%\">"
+"Analytics section</a>."
 msgstr ""

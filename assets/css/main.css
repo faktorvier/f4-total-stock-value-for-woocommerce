@@ -1,61 +1,186 @@
-.total-sale-value-filter {
+#wpbody-content {
+	margin-top: 80px;
+}
+
+/* Header */
+.total-stock-value__header {
+	position: fixed;
+	left: 0;
+	z-index: 1001;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+	padding: 0 16px;
+	background-color: #FFFFFF;
+	box-sizing: border-box;
 }
 
-.total-sale-value-filter__select {
-	min-width: 400px !important;
-	max-width: 30vw !important;
-	width: 30vw !important;
+.total-stock-value__header--scrolled {
+	box-shadow: 0 8px 8px 0 rgb(85 93 102 / 30%);
 }
 
-.total-sale-value-filter__button {
+.total-stock-value__headline {
+	color: #1e1e1e;
+	font-size: 14px;
+	line-height: 1.3;
+}
+
+.total-stock-value__f4-logo,
+.total-stock-value__f4-logo svg {
+	width: 30px;
+	height: 40px;
+	font-size: 0;
+	line-height: 0;
+	fill: #757575;
+}
+
+/* Main */
+.total-stock-value__main {
+}
+
+/* Filter */
+.total-stock-value__filter {
+	margin-bottom: 16px;
+}
+
+.total-stock-value__filter-label {
+	display: inline-block;
+	margin: 5px 0px;
+}
+
+.total-stock-value__filter-fields {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.total-stock-value__filter-select {
+	min-width: 360px !important;
+	max-width: none !important;
+	width: 33.33333% !important;
+}
+
+.total-stock-value__filter .select2-container .select2-search--inline .select2-search__field {
+	margin-top: 0 !important;
+}
+
+.total-stock-value__filter-button {
 	margin-left: 6px !important;
 	align-self: flex-start;
 	height: 39px;
 }
 
-.total-sale-value-filter .select2-container .select2-search--inline .select2-search__field {
-	margin-top: 0 !important;
-}
-
-.total-sale-value {
+/* Statistics */
+.total-stock-value__items {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	padding-top: 10px;
+	border-left: 1px solid #E0E0E0;
 }
 
-.total-sale-value__item {
+.total-stock-value__item {
+	box-sizing: border-box;
 	width: 100%;
-	padding: 1em;
+	padding: 16px;
 	margin-bottom: 10px;
-	border: 1px solid #DFDFDF;
-	border-right: 5px solid #AAAAAA;
+	border: 1px solid #E0E0E0;
+	border-left: 0;
 	background-color: #FFFFFF;
-}
-
-.total-sale-value__item--value {
-	border-right-color: #3498DB;
-}
-
-.total-sale-value__item--value-sale {
-	border-right-color: #F1C40F;
-}
-
-.total-sale-value__value {
-	font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', sans-serif;
-	font-size: 1.618em;
-	line-height: 1.2em;
-	color: #464646;
-}
-
-.total-sale-value__label {
 	color: #AAAAAA;
+	box-shadow: inset 0 4px 0 currentColor;
 }
 
-@media screen and (min-width: 768px) {
-	.total-sale-value__item {
-		width: calc(33.33333% - 40px);
+.total-stock-value__label {
+	font-size: 14px;
+	line-height: 20px;
+	margin-bottom: 12px;
+	color: #1e1e1e;
+}
+
+.total-stock-value__value {
+	display: flex;
+	justify-content: space-between;
+	font-size: 20px;
+	line-height: 28px;
+	margin-bottom: 4px;
+	color: #1e1e1e;
+}
+
+.total-stock-value__info {
+	flex: 0 1 auto;
+    display: flex;
+    height: min-content;
+	padding: 5px;
+    border-radius: 3px;
+    background-color: #f0f0f0;
+    color: #1e1e1e;
+	font-size: 12px;
+	line-height: 1.4em;
+}
+
+/* Tax hint */
+.total-stock-value__tax-hint {
+	font-size: 0.75rem;
+	text-align: right;
+	opacity: 0.8;
+}
+
+@media screen and (max-width: 782px) {
+	.total-stock-value__header {
+		top: 46px;
+		width: 100%;
+	}
+}
+
+
+@media screen and (min-width: 783px) {
+	.total-stock-value__header {
+		left: 36px;
+		top: 32px;
+		width: calc(100% - 36px);
+		padding: 0 24px;
+	}
+}
+
+@media screen and (min-width: 961px) {
+	#wpbody-content {
+		margin-top: 100px;
+	}
+
+	/* Header */
+	.total-stock-value__header {
+		left: 160px;
+		width: calc(100% - 160px);
+		padding-left: 40px;
+		padding-right: 20px;
+	}
+
+	/* Main */
+	.total-stock-value__main {
+		margin-left: 20px;
+		margin-right: 40px;
+	}
+
+	/* Filter */
+	.total-stock-value__filter {
+		margin-bottom: 24px;
+	}
+
+	.total-stock-value__filter-label {
+		margin: 7px 0px;
+	}
+
+	/* Statistics */
+	.total-stock-value__item {
+		padding: 24px;
+		width: 33.33333%;
+	}
+
+	.total-stock-value__label {
+		margin-bottom: 16px;
+	}
+
+	.total-stock-value__info {
+		font-size: 13px;
 	}
 }

@@ -12,7 +12,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: f4-total-stock-value-for-woocommerce
 Domain Path: /languages/
 WC requires at least: 3.0
-WC tested up to: 5.5
+WC tested up to: 6.3
 
 This plugin is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,8 +31,7 @@ along with this plugin. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 
 if(!defined('ABSPATH')) exit;
 
-define('F4_WCTSV_VERSION', '1.1.6');
-define('F4_WCTSV_PRO', false);
+define('F4_WCTSV_VERSION', '2.0.0');
 
 define('F4_WCTSV_SLUG', 'f4-total-stock-value-for-woocommerce');
 define('F4_WCTSV_MAIN_FILE', __FILE__);
@@ -63,4 +62,5 @@ spl_autoload_register(function($class) {
 // Init core modules
 F4\WCTSV\Core\Hooks::init();
 
-?>
+// Init modules
+F4\WCTSV\Analytics\Hooks::init();

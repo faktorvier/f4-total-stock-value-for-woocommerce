@@ -10,7 +10,7 @@ namespace F4\WCTSV\Core;
  * @since 1.0.0
  * @package F4\WCTSV\Core
  */
-class Hooks {
+class Hooks extends \F4\WCTSV\Core\AbstractHooks {
 	/**
 	 * Initialize the hooks
 	 *
@@ -19,36 +19,46 @@ class Hooks {
 	 * @static
 	 */
 	public static function init() {
-		add_action('plugins_loaded', __NAMESPACE__ . '\\Hooks::core_loaded');
-		add_action('F4/WCTSV/Core/set_constants', __NAMESPACE__ . '\\Hooks::set_default_constants', 98);
+		self::add_action('F4/WCTSV/set_constants', 'set_default_constants', 1);
+		self::add_action('plugins_loaded', 'core_loaded');
+		self::add_action('setup_theme', 'core_after_loaded');
+		self::add_action('init', 'load_textdomain');
 
-		add_filter('woocommerce_admin_reports', __NAMESPACE__ . '\\Hooks::add_report_tab', 10, 1);
-		add_action('admin_enqueue_scripts', __NAMESPACE__ . '\\Hooks::add_custom_admin_styles');
-
-		add_action('admin_action_total-sale-value-filter',  __NAMESPACE__ . '\\Hooks::apply_product_cat_filter');
+		self::register_activation_hook('core_loaded');
 	}
 
 	/**
-	 * Sets the module default constants
+	 * Sets the plugin default constants
 	 *
 	 * @since 1.0.0
 	 * @access public
 	 * @static
 	 */
-	public static function set_default_constants() {}
+	public static function set_default_constants() {
+
+	}
 
 	/**
-	 * Fires once the core module is loaded
+	 * Fires once the plugin is loaded
 	 *
 	 * @since 1.0.0
 	 * @access public
 	 * @static
 	 */
 	public static function core_loaded() {
-		do_action('F4/WCTSV/Core/set_constants');
-		do_action('F4/WCTSV/Core/loaded');
+		do_action('F4/WCTSV/set_constants');
+		do_action('F4/WCTSV/loaded');
+	}
 
-		add_action('init', __NAMESPACE__ . '\\Hooks::load_textdomain');
+	/**
+	 * Fires once after the plugin is loaded
+	 *
+	 * @since 2.0.0
+	 * @access public
+	 * @static
+	 */
+	public static function core_after_loaded() {
+		do_action('F4/WCTSV/after_loaded');
 	}
 
 	/**
@@ -61,66 +71,4 @@ class Hooks {
 	public static function load_textdomain() {
 		load_plugin_textdomain('f4-total-stock-value-for-woocommerce', false, plugin_basename(F4_WCTSV_PATH . 'languages') . '/');
 	}
-
-	/**
-	 * Add new tab to reports
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 * @static
-	 */
-	public static function add_report_tab($reports) {
-		$reports['stock']['reports']['value'] = [
-			'title' => __('Total stock value', 'f4-total-stock-value-for-woocommerce'),
-			'description' => '',
-			'hide_title' => true,
-			'callback' => function() {
-				include F4_WCTSV_PATH . 'modules/Core/partials/report.php';
-			}
-		];
-
-		return $reports;
-	}
-
-	/**
-	 * Add css file for the report page
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 * @static
-	 */
-	public static function add_custom_admin_styles() {
-		$is_report_page = get_current_screen()->id === 'woocommerce_page_wc-reports';
-		$is_total_value_tab = isset($_GET['tab']) && $_GET['tab'] === 'stock' && isset($_GET['report']) && $_GET['report'] === 'value';
-
-		if($is_total_value_tab && $is_report_page) {
-			wp_enqueue_style(F4_WCTSV_SLUG, F4_WCTSV_URL . 'assets/css/main.css', [], F4_WCTSV_VERSION);
-		}
-	}
-
-	/**
-	 * Apply product category filter
-	 *
-	 * @since 1.1.0
-	 * @access public
-	 * @static
-	 */
-	public static function apply_product_cat_filter() {
-		$categories = $_REQUEST['product_cat'] ?? [];
-		$redirect = wp_get_referer();
-		$user_id = get_current_user_id();
-
-		if(empty($categories)) {
-			$redirect = remove_query_arg('product_cat', $redirect);
-			delete_user_meta($user_id, 'total-sale-value-filter');
-		} else {
-			$redirect = add_query_arg('product_cat', implode(',', $categories), $redirect);
-			update_user_meta($user_id, 'total-sale-value-filter', $categories);
-		}
-
-		wp_redirect($redirect);
-		exit();
-	}
 }
-
-?>
