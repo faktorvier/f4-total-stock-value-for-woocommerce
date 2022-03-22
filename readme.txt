@@ -40,6 +40,7 @@ This plugin works out-of-the-box.
 * Update performance for shops with a lot of products
 * Move statistics from reports to the new analytics menu
 * Update styles to match the new analytics elements
+* Fix bug with draft product variations
 * Refactoring and update most of the plugin code
 * Support WooCommerce 6.3
 
