@@ -5,7 +5,7 @@ Tags: woocommerce, stock, stock value, cost of goods, report, shop, ecommerce
 Requires at least: 5.3
 Tested up to: 5.9
 Requires PHP: 7.0
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,9 @@ This plugin works out-of-the-box.
 1. Total stock value infos in WooCommerce Analytics
 
 == Changelog ==
+
+= 2.0.1 =
+* Update translations
 
 = 2.0.0 =
 * Update performance for shops with a lot of products
