@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F4 Total Stock Value for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-16 09:49+0000\n"
+"POT-Creation-Date: 2022-03-22 14:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -15,24 +15,30 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.3.3; wp-5.4.1"
 
+#: modules/Analytics/Helpers.php:337
+msgid "%count% product"
+msgid_plural "%count% products"
+msgstr[0] ""
+msgstr[1] ""
+
 #. Description of the plugin
 msgid ""
 "Adds a few infos about the current stock value to the WooCommerce reports."
 msgstr ""
 
-#: modules/Analytics/views/report.php:93
+#: modules/Analytics/views/report.php:92
 msgid "All categories"
 msgstr ""
 
-#: modules/Analytics/views/report.php:116
+#: modules/Analytics/views/report.php:133
 msgid "All prices %taxhint%"
 msgstr ""
 
-#: modules/Analytics/views/report.php:84
+#: modules/Analytics/views/report.php:83
 msgid "Apply filter"
 msgstr ""
 
-#: modules/Analytics/views/report.php:52
+#: modules/Analytics/views/report.php:50
 msgid "Category filter"
 msgstr ""
 
@@ -52,28 +58,28 @@ msgstr ""
 msgid "https://www.faktorvier.ch"
 msgstr ""
 
-#: modules/Analytics/Hooks.php:100 modules/Analytics/Hooks.php:101
-#: modules/Analytics/views/report.php:19
+#: modules/Analytics/Hooks.php:94 modules/Analytics/Hooks.php:95
+#: modules/Analytics/views/report.php:17
 msgid "Stock value"
 msgstr ""
 
-#: modules/Analytics/Hooks.php:141
+#: modules/Analytics/Hooks.php:135
 msgid "Total stock value"
 msgstr ""
 
-#: modules/Analytics/Helpers.php:412
+#: modules/Analytics/Helpers.php:341
 msgid "Total stock value (regular prices)"
 msgstr ""
 
-#: modules/Analytics/Helpers.php:417
+#: modules/Analytics/Helpers.php:346
 msgid "Total stock value (with sale prices)"
 msgstr ""
 
-#: modules/Analytics/Helpers.php:407
+#: modules/Analytics/Helpers.php:331
 msgid "Units in stock"
 msgstr ""
 
-#: modules/Analytics/Hooks.php:146
+#: modules/Analytics/Hooks.php:140
 msgid ""
 "We've moved the total stock value reports to the new <a href=\"%url%\">"
 "Analytics section</a>."
