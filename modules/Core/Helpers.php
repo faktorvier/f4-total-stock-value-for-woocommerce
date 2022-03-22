@@ -238,11 +238,15 @@ class Helpers {
 
 		$lang = false;
 
-		if(defined('ICL_LANGUAGE_CODE') && ICL_LANGUAGE_CODE === 'all') {
-			if(function_exists('pll_default_language')) {
-				$lang = pll_default_language();
-			} elseif($sitepress) {
-				$lang = $sitepress->get_default_language();
+		if(defined('ICL_LANGUAGE_CODE')) {
+			$lang = ICL_LANGUAGE_CODE;
+
+			if(ICL_LANGUAGE_CODE === 'all') {
+				if(function_exists('pll_default_language')) {
+					$lang = pll_default_language();
+				} elseif($sitepress) {
+					$lang = $sitepress->get_default_language();
+				}
 			}
 		}
 
@@ -262,8 +266,6 @@ class Helpers {
 	public static function maybe_translate_term_id($term_id, $lang = null) {
 		global $sitepress;
 
-		// @todo: testing
-
 		if(function_exists('pll_get_term')) {
 			// Polylang
 			if(is_array($term_id)) {
@@ -274,7 +276,18 @@ class Helpers {
 				$term_id = pll_get_term($term_id, $lang);
 			}
 		} elseif($sitepress) {
-			// @todo: WPML
+			// WPML
+			if(is_null($lang)) {
+				$lang = wpml_get_current_language();
+			}
+
+			if(is_array($term_id)) {
+				foreach($term_id as &$term_id_item) {
+					$term_id_item = apply_filters('wpml_object_id', $term_id_item, get_term($term_id_item)->taxonomy, true, $lang);
+				}
+			} else {
+				$term_id = apply_filters('wpml_object_id', $term_id, get_term($term_id)->taxonomy, true, $lang);
+			}
 		}
 
 		return $term_id;

@@ -161,25 +161,35 @@ class Helpers {
 			'pm_price_regular.meta_value as price_regular'
 		];
 
+		// Get post type
+		$post_type = 'product';
+
+		if(in_array($product_type, ['variation'])) {
+			$post_type = 'product_variation';
+		}
+
+		// Get post status
+		$post_status = 'publish';
+
 		// FROM: Add product type filter
 		if($product_type === 'variation') {
 			$variable_product_ttid = Core::get_ttid_by_slug('variable', 'product_type');
 
 			$sql_parts['from'][] = "
-				INNER JOIN wp_term_relationships as tt_product_type
+				INNER JOIN wp_term_relationships as tr_product_type
 					ON (
-						product.post_parent = tt_product_type.object_id
-						AND tt_product_type.term_taxonomy_id = $variable_product_ttid
+						product.post_parent = tr_product_type.object_id
+						AND tr_product_type.term_taxonomy_id = $variable_product_ttid
 					)
 			";
 		} else {
 			$simple_product_ttid = Core::get_ttid_by_slug($product_type, 'product_type');
 
 			$sql_parts['from'][] = "
-				INNER JOIN wp_term_relationships as tt_product_type
+				INNER JOIN wp_term_relationships as tr_product_type
 					ON (
-						product.id = tt_product_type.object_id
-						AND tt_product_type.term_taxonomy_id = $simple_product_ttid
+						product.id = tr_product_type.object_id
+						AND tr_product_type.term_taxonomy_id = $simple_product_ttid
 					)
 			";
 		}
@@ -187,10 +197,10 @@ class Helpers {
 		// FROM: Add category filter
 		if(!empty($filter['categories'])) {
 			$sql_parts['from'][] = "
-				INNER JOIN wp_term_relationships as tt_category
+				INNER JOIN wp_term_relationships as tr_category
 					ON (
-						product." . ($product_type === 'variation' ? 'post_parent' : 'id') . " = tt_category.object_id
-						AND tt_category.term_taxonomy_id IN ( " . implode(',', $filter['categories']) . " )
+						product." . ($product_type === 'variation' ? 'post_parent' : 'id') . " = tr_category.object_id
+						AND tr_category.term_taxonomy_id IN ( " . implode(',', $filter['categories']) . " )
 					)
 			";
 		}
@@ -199,22 +209,33 @@ class Helpers {
 		if($product_type === 'variation') {
 			$sql_parts['from'][] = "
 				INNER JOIN wp_posts as product_parent
-					ON ( product.post_parent = product_parent.id )
+					ON (
+						product.post_parent = product_parent.id
+						AND product_parent.post_status = '$post_status'
+					)
 			";
 		}
 
-		// FROM: Add polylang filter
-		if(function_exists('pll_default_language')) {
-			// @todo: check if product posttype is translatable
-			// @todo: product.id or product.post_parent if variation?
-
+		// FROM: Add multilang filter
+		if(function_exists('pll_is_translated_post_type') && pll_is_translated_post_type($post_type)) {
 			$language_ttid = Core::get_ttid_by_slug(Core::maybe_get_default_language(), 'language');
 
 			$sql_parts['from'][] = "
-				INNER JOIN wp_term_relationships as tt_ppl_language
+				INNER JOIN wp_term_relationships as tr_ppl_language
 					ON (
-						product.id = tt_ppl_language.object_id
-						AND tt_ppl_language.term_taxonomy_id = $language_ttid
+						product.id = tr_ppl_language.object_id
+						AND tr_ppl_language.term_taxonomy_id = $language_ttid
+					)
+			";
+		} elseif(class_exists('SitePress')) {
+			$language = Core::maybe_get_default_language();
+
+			$sql_parts['from'][] = "
+				INNER JOIN wp_icl_translations as wpml_translation
+					ON (
+						product.id = wpml_translation.element_id
+						AND wpml_translation.element_type = Concat('post_', product.post_type)
+						AND wpml_translation.language_code = '$language'
 					)
 			";
 		}
@@ -246,38 +267,14 @@ class Helpers {
 		";
 
 		// WHERE: Add post type filter
-		if($product_type === 'variation') {
-			$sql_parts['where'][] = "
-				AND product.post_type IN ( 'product_variation' )
-			";
-		} else {
-			$sql_parts['where'][] = "
-				AND product.post_type IN ( 'product' )
-			";
-		}
+		$sql_parts['where'][] = "
+			AND product.post_type = '$post_type'
+		";
 
 		// WHERE: Add post status filter
 		$sql_parts['where'][] = "
-			AND product.post_status IN ( 'publish' )
+			AND product.post_status = '$post_status'
 		";
-
-		// echo '<br />';
-		// echo '<br />';
-		// echo '<br />';
-		// echo '<br />';
-		// echo '<br />';
-		// echo '<br />';
-		// echo '<br />';
-		// echo '<br />';
-		// echo '<br />';
-		// echo '<pre>';
-		// echo "
-		// 	SELECT " . implode(',', $sql_parts['select']) . "
-		// 	FROM wp_posts as product " . implode(' ', $sql_parts['from']) . "
-		// 	WHERE 1 = 1 " . implode(' ', $sql_parts['where']) . "
-		// 	GROUP BY product.id
-		// ";
-		// echo '</pre>';
 
 		return "
 			SELECT " . implode(',', $sql_parts['select']) . "
@@ -285,49 +282,6 @@ class Helpers {
 			WHERE 1 = 1 " . implode(' ', $sql_parts['where']) . "
 			GROUP BY product.id
 		";
-
-		// NEW (WPML)
-		// SELECT wp_posts.*
-		// FROM   wp_posts
-		// 	LEFT JOIN wp_term_relationships
-		// 			ON ( wp_posts.id = wp_term_relationships.object_id )
-		// 	LEFT JOIN wp_term_relationships AS tt1
-		// 			ON ( wp_posts.id = tt1.object_id )
-		// 	INNER JOIN wp_postmeta
-		// 			ON ( wp_posts.id = wp_postmeta.post_id )
-		// 	INNER JOIN wp_postmeta AS mt1
-		// 			ON ( wp_posts.id = mt1.post_id )
-		// 	LEFT JOIN wp_icl_translations wpml_translations
-		// 			ON wp_posts.id = wpml_translations.element_id
-		// 				AND wpml_translations.element_type =
-		// 					Concat('post_', wp_posts.post_type)
-		// WHERE  1 = 1
-		// 	AND ( wp_term_relationships.term_taxonomy_id IN ( 2 )
-		// 			AND ( tt1.term_taxonomy_id IN ( 16, 17, 18, 19 ) ) )
-		// 	AND ( ( wp_postmeta.meta_key = '_stock'
-		// 			AND wp_postmeta.meta_value > '0' )
-		// 			AND ( mt1.meta_key = '_manage_stock'
-		// 				AND mt1.meta_value = 'yes' ) )
-		// 	AND wp_posts.post_type IN ( 'product', 'product_variation' )
-		// 	AND (( wp_posts.post_status = 'publish' ))
-		// 	AND ( ( ( wpml_translations.language_code = 'de'
-		// 				OR 0 )
-		// 			AND wp_posts.post_type IN ( 'post', 'page', 'attachment',
-		// 										'wp_block',
-		// 										'wp_template', 'wp_template_part',
-		// 										'wp_navigation'
-		// 										,
-		// 											'product',
-		// 										'product_variation' )
-		// 				)
-		// 			OR wp_posts.post_type NOT IN ( 'post', 'page', 'attachment',
-		// 											'wp_block',
-		// 											'wp_template', 'wp_template_part',
-		// 											'wp_navigation',
-		// 												'product',
-		// 											'product_variation' ) )
-		// GROUP  BY wp_posts.id
-		// ORDER  BY wp_posts.post_date DESC
 	}
 
 
