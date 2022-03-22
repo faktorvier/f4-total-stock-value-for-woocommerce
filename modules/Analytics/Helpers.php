@@ -32,7 +32,8 @@ class Helpers {
 	 * @access public
 	 * @static
 	 * @param boolean|null $inc_taxes TRUE = inc. label, FALSE = ex. label and NULL = detect current setting.
-	 * @return string The tax hint either incl or excl.
+	 * @param boolean $remove_brackets TRUE = remove brackets from label, FALSE = don't remove brackets.
+	 * @return string The tax hint either inc or ex.
 	 */
 	public static function get_tax_hint($inc_taxes = null, $remove_brackets = true) {
 		if(is_null($inc_taxes)) {
@@ -85,7 +86,7 @@ class Helpers {
 		// Get category translation
 		$filters['categories'] = Core::maybe_translate_term_id($filters['categories']);
 
-		return $filters ;
+		return $filters;
 	}
 
 	/**
@@ -284,7 +285,6 @@ class Helpers {
 		";
 	}
 
-
 	/**
 	 * Get statistics.
 	 *
@@ -320,10 +320,6 @@ class Helpers {
 		];
 
 		foreach($products as $product) {
-			//if(!is_numeric($product->stock) || !is_numeric($product->price) || !is_numeric($product->price_regular)) {
-				//continue;
-			//}
-
 			$values['units'] += (int)$product->stock;
 			$values['price'] += ((int)$product->stock * Core::maybe_zero($product->price));
 			$values['price_regular'] += ((int)$product->stock * Core::maybe_zero($product->price_regular));
@@ -344,14 +340,12 @@ class Helpers {
 			'regular_value' => [
 				'label' => __('Total stock value (regular prices)', 'f4-total-stock-value-for-woocommerce'),
 				'value' => wc_price($values['price_regular']),
-				'color' => '#007cba',
-				//'info' => '100%'
+				'color' => '#007cba'
 			],
 			'current_value' => [
 				'label' => __('Total stock value (with sale prices)', 'f4-total-stock-value-for-woocommerce'),
 				'value' => wc_price($values['price']),
-				'color' => '#F1C40F',
-				//'info' => round($values['price'] / $values['price_regular'] * 100) . '%'
+				'color' => '#F1C40F'
 			]
 		];
 

@@ -12,6 +12,18 @@ namespace F4\WCTSV\Core;
  */
 class Helpers {
 	/**
+	 * Get F4 link.
+	 *
+	 * @since 2.0.0
+	 * @access public
+	 * @static
+	 * @return string The F4 link.
+	 */
+	public static function get_f4_link() {
+		echo 'https://www.f4dev.ch?utm_campaign=wp_backend&utm_medium=' . F4_WCTSV_SLUG;
+	}
+
+	/**
 	 * Get plugin infos.
 	 *
 	 * @since 2.0.0

@@ -17,7 +17,7 @@ $statistics = Analytics::get_stock_value_statistics($current_filters);
 			<?php _e('Stock value', 'f4-total-stock-value-for-woocommerce'); ?>
 		</h1>
 
-		<a class="total-stock-value__f4-logo" href="https://www.f4dev.ch" target="_blank">
+		<a class="total-stock-value__f4-logo" href="<?php echo Helpers::get_f4_link(); ?>" target="_blank">
 			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="75px" height="100px" viewBox="0 0 75 100" xml:space="preserve">
 				<path d="M74.295,21.04c0,1.38-1.122,2.504-2.502,2.504H54.259c-1.384,0-2.504-1.124-2.504-2.504V3.504
 					c0-1.379,1.12-2.504,2.504-2.504h17.534c1.38,0,2.502,1.125,2.502,2.504V21.04z"></path>
