@@ -148,6 +148,8 @@ class Helpers {
 	 * @return string The sql statement.
 	 */
 	public static function get_sql_statement($product_type = 'simple', $filter = []) {
+		global $wpdb;
+
 		$sql_parts = [
 			'select' => [],
 			'from' => [],
@@ -163,42 +165,53 @@ class Helpers {
 		];
 
 		// Get post type
-		$post_type = 'product';
-
-		if(in_array($product_type, ['variation'])) {
-			$post_type = 'product_variation';
-		}
+		$post_type = in_array($product_type, ['variation']) ? 'product_variation' : 'product';
 
 		// Get post status
 		$post_status = 'publish';
 
 		// FROM: Add product type filter
 		if($product_type === 'variation') {
-			$variable_product_ttid = Core::get_ttid_by_slug('variable', 'product_type');
-
 			$sql_parts['from'][] = "
-				INNER JOIN wp_term_relationships as tr_product_type
+				INNER JOIN $wpdb->term_relationships AS tr_product_type_rel
 					ON (
-						product.post_parent = tr_product_type.object_id
-						AND tr_product_type.term_taxonomy_id = $variable_product_ttid
+						product.post_parent = tr_product_type_rel.object_id
 					)
+				INNER JOIN $wpdb->term_taxonomy AS tt_product_type
+					ON (
+						tr_product_type_rel.term_taxonomy_id = tt_product_type.term_taxonomy_id
+						AND tt_product_type.taxonomy = 'product_type'
+					)
+				INNER JOIN $wpdb->terms as term_product_type
+					ON (
+						term_product_type.term_id = tt_product_type.term_id
+						AND term_product_type.slug = 'variable'
+				)
 			";
-		} else {
-			$simple_product_ttid = Core::get_ttid_by_slug($product_type, 'product_type');
 
+		} else {
 			$sql_parts['from'][] = "
-				INNER JOIN wp_term_relationships as tr_product_type
+				INNER JOIN $wpdb->term_relationships AS tr_product_type_rel
 					ON (
-						product.id = tr_product_type.object_id
-						AND tr_product_type.term_taxonomy_id = $simple_product_ttid
+						product.id = tr_product_type_rel.object_id
 					)
+				INNER JOIN $wpdb->term_taxonomy AS tt_product_type
+					ON (
+						tr_product_type_rel.term_taxonomy_id = tt_product_type.term_taxonomy_id
+						AND tt_product_type.taxonomy = 'product_type'
+					)
+				INNER JOIN $wpdb->terms as term_product_type
+					ON (
+						term_product_type.term_id = tt_product_type.term_id
+						AND term_product_type.slug = 'simple'
+				)
 			";
 		}
 
 		// FROM: Add category filter
 		if(!empty($filter['categories'])) {
 			$sql_parts['from'][] = "
-				INNER JOIN wp_term_relationships as tr_category
+				INNER JOIN $wpdb->term_relationships as tr_category
 					ON (
 						product." . ($product_type === 'variation' ? 'post_parent' : 'id') . " = tr_category.object_id
 						AND tr_category.term_taxonomy_id IN ( " . implode(',', $filter['categories']) . " )
@@ -209,7 +222,7 @@ class Helpers {
 		// FROM: Ignore orphaned variations
 		if($product_type === 'variation') {
 			$sql_parts['from'][] = "
-				INNER JOIN wp_posts as product_parent
+				INNER JOIN $wpdb->posts as product_parent
 					ON (
 						product.post_parent = product_parent.id
 						AND product_parent.post_status = '$post_status'
@@ -222,7 +235,7 @@ class Helpers {
 			$language_ttid = Core::get_ttid_by_slug(Core::maybe_get_default_language(), 'language');
 
 			$sql_parts['from'][] = "
-				INNER JOIN wp_term_relationships as tr_ppl_language
+				INNER JOIN $wpdb->term_relationships as tr_ppl_language
 					ON (
 						product.id = tr_ppl_language.object_id
 						AND tr_ppl_language.term_taxonomy_id = $language_ttid
@@ -232,7 +245,7 @@ class Helpers {
 			$language = Core::maybe_get_default_language();
 
 			$sql_parts['from'][] = "
-				INNER JOIN wp_icl_translations as wpml_translation
+				INNER JOIN {$wpdb->prefix}icl_translations as wpml_translation
 					ON (
 						product.id = wpml_translation.element_id
 						AND wpml_translation.element_type = Concat('post_', product.post_type)
@@ -243,24 +256,24 @@ class Helpers {
 
 		// FROM: Add stock filter
 		$sql_parts['from'][] = "
-			INNER JOIN wp_postmeta as pm_stock
+			INNER JOIN $wpdb->postmeta as pm_stock
 				ON (
 					product.id = pm_stock.post_id
 					AND pm_stock.meta_key = '_stock'
 					AND pm_stock.meta_value > 0
 				)
-			INNER JOIN wp_postmeta as pm_manage_stock
+			INNER JOIN $wpdb->postmeta as pm_manage_stock
 				ON (
 					product.id = pm_manage_stock.post_id
 					AND pm_manage_stock.meta_key = '_manage_stock'
 					AND pm_manage_stock.meta_value = 'yes'
 				)
-			LEFT JOIN wp_postmeta as pm_price
+			LEFT JOIN $wpdb->postmeta as pm_price
 				ON (
 					product.id = pm_price.post_id
 					AND pm_price.meta_key = '_price'
 				)
-			LEFT JOIN wp_postmeta as pm_price_regular
+			LEFT JOIN $wpdb->postmeta as pm_price_regular
 				ON (
 					product.id = pm_price_regular.post_id
 					AND pm_price_regular.meta_key = '_regular_price'
@@ -279,7 +292,7 @@ class Helpers {
 
 		return "
 			SELECT " . implode(',', $sql_parts['select']) . "
-			FROM wp_posts as product " . implode(' ', $sql_parts['from']) . "
+			FROM $wpdb->posts as product " . implode(' ', $sql_parts['from']) . "
 			WHERE 1 = 1 " . implode(' ', $sql_parts['where']) . "
 			GROUP BY product.id
 		";
