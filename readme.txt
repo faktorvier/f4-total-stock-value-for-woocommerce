@@ -5,7 +5,7 @@ Tags: woocommerce, stock, stock value, cost of goods, report, shop, ecommerce
 Requires at least: 5.3
 Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Adds a few infos about the current stock value to the WooCommerce Analytics.
 
 == Description ==
 
-F4 Total Stock Value for WooCommerce adds a new page with informations about the current stock (costs of goods in stock) to the WooCommerce Analytics menu:
+[F4 Total Stock Value for WooCommerce](https://www.f4dev.ch) adds a new page with informations about the current stock (costs of goods in stock) to the WooCommerce Analytics menu:
 
 * Total units in stock
 * Total stock value (regular prices, without sale prices)
@@ -35,6 +35,10 @@ This plugin works out-of-the-box.
 1. Total stock value infos in WooCommerce Analytics
 
 == Changelog ==
+
+= 2.0.4 =
+* Update www.f4dev.ch links
+* Support WooCommerce 6.8
 
 = 2.0.3 =
 * Support WordPress 6.0
