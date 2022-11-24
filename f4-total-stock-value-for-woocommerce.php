@@ -4,7 +4,7 @@
 Plugin Name: F4 Total Stock Value for WooCommerce
 Plugin URI: https://github.com/faktorvier/f4-total-stock-value-for-woocommerce
 Description: Adds a few infos about the current stock value to the WooCommerce reports.
-Version: 2.0.4
+Version: 2.0.5
 Author: FAKTOR VIER
 Author URI: https://www.f4dev.ch
 License: GPLv2
@@ -12,7 +12,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: f4-total-stock-value-for-woocommerce
 Domain Path: /languages/
 WC requires at least: 3.0
-WC tested up to: 6.8
+WC tested up to: 7.1
 
 This plugin is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ along with this plugin. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 
 if(!defined('ABSPATH')) exit;
 
-define('F4_WCTSV_VERSION', '2.0.4');
+define('F4_WCTSV_VERSION', '2.0.5');
 
 define('F4_WCTSV_SLUG', 'f4-total-stock-value-for-woocommerce');
 define('F4_WCTSV_MAIN_FILE', __FILE__);
