@@ -171,44 +171,6 @@ class Helpers {
 	}
 
 	/**
-	 * Get post id of post object, or null.
-	 *
-	 * @since 2.0.0
-	 * @access public
-	 * @static
-	 */
-	public static function maybe_get_post_id($post = null) {
-		if(!$post && function_exists('get_the_ID')) {
-			$post = get_the_ID();
-		} elseif(is_object($post)) {
-			$post = $post->ID;
-		} elseif(!is_numeric($post)) {
-			$post = null;
-		}
-
-		return $post;
-	}
-
-	/**
-	 * Get post id of post object, or null.
-	 *
-	 * @since 2.0.0
-	 * @access public
-	 * @static
-	 */
-	public static function maybe_get_post_object($post = null) {
-		if(!$post && function_exists('get_post')) {
-			$post = get_post();
-		} elseif(is_numeric($post)) {
-			$post = get_post($post);
-		} elseif(!is_object($post)) {
-			$post = null;
-		}
-
-		return $post;
-	}
-
-	/**
 	 * Check if current post is specific post type.
 	 *
 	 * @since 2.0.0
