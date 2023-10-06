@@ -2,6 +2,11 @@
 	margin-top: 80px;
 }
 
+.select2-container--default .select2-results__option--highlighted[aria-selected],
+.select2-container--default .select2-results__option--highlighted[data-selected] {
+	color: black !important;
+}
+
 /* Header */
 .total-stock-value__header {
 	position: fixed;
