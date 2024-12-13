@@ -13,7 +13,7 @@ Adds a few infos about the current stock value to the WooCommerce Analytics.
 
 == Description ==
 
-[F4 Total Stock Value for WooCommerce](https://www.f4dev.ch) adds a new page with informations about the current stock (costs of goods in stock) to the WooCommerce Analytics menu:
+[F4 Total Stock Value for WooCommerce](https://www.f4dev.ch) adds a new page with informations about the current stock to the WooCommerce Analytics menu:
 
 * Total units in stock
 * Total stock value (regular prices, without sale prices)
